@@ -24,6 +24,8 @@ class HashTable {
         void insert(std::string& key, std::string& data);
         std::string search(const std::string& key);
 
+        Node** getTable();
+
     private:
         Node** table;
         int size;

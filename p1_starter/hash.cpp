@@ -48,6 +48,10 @@ std::string HashTable::search(const std::string& key) {
     return "";
 }
 
+Node** HashTable::getTable() {
+        return table;
+    }
+
 int hash_function(std::string text) {
     // Implement your own hash function here
 
