@@ -51,9 +51,14 @@ std::string HashTable::search(const std::string& key) {
 int hash_function(std::string text) {
     // Implement your own hash function here
 
-    int x = text.length();
+    int hash = 0;
 
-    int a = x % 5;
+    //We multiply each hash by 31 and add the ASCII value of the character
+    //This ensures character position matters and creates better distribution
+    //across slots since there is more unique hash values
+    for (char c : text) {
+        hash = hash * 31 + (int)c;
+    }
 
-    return 1;
+    return hash;
 }
