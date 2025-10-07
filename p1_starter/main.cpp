@@ -45,11 +45,59 @@ int main() {
         table.insert(texts[i], data);
     }
 
+    Node** table_Array = table.getTable();
+    int* table_lengths = new int[k];
+
     cout << "==== Printing the contents of the first 5 slots ====" << endl;
+
+    for(int i = 0; i < 5; i++){
+        cout << "Slot " << i << ": ";
+        Node* current = table_Array[i];
+
+        while(current != nullptr){
+            cout << current->key << " ";
+            current = current->next;
+        }
+
+        cout << endl;
+    }
+
 
     cout << "==== Printing the slot lengths ====" << endl;
 
+    for (int i = 0; i < k; i++) {
+        int count = 0;
+        Node* current = table_Array[i];
+
+        while (current != nullptr) {
+            count++;
+            current = current->next;
+        }
+
+        table_lengths[i] = count;
+
+        cout << "Slot " << i << ": " << count << endl;
+    }
+
     cout << "==== Printing the standard deviation =====" << endl;
+
+    float sum = 0.0;
+
+    for(int i = 0; i < k; i++){
+        sum += table_lengths[i];
+    }
+
+    float mean = sum / k;
+
+    float standard_deviation = 0.0;
+
+    for(int i = 0; i < k; i++){
+        standard_deviation += (table_lengths[i] - mean) * (table_lengths[i] - mean);
+    }
+
+    standard_deviation = sqrt(standard_deviation / k);
+
+    cout << standard_deviation << endl;
 
     return 0;
 }
