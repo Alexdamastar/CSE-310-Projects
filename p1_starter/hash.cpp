@@ -27,7 +27,7 @@ HashTable::~HashTable() {
 }
 
 void HashTable::insert(std::string& key, std::string& data) {
-    int index = hash_function(key) % size;
+    int index = (hash_function(key) % size + size) % size;
     Node* newNode = new Node(key, data);
 
     newNode->next = table[index];
