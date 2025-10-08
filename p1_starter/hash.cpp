@@ -57,10 +57,13 @@ int hash_function(std::string text) {
 
     int hash = 0;
 
-    //We multiply each hash by 31 and add the ASCII value of the character
-    //This ensures character position matters and creates better distribution
-    //across slots since there is more unique hash values
     for (char c : text) {
+        hash = hash * 31 + (int)c;
+    }
+
+    for (int i = 0; i < text.length(); i+=2) {
+        char c = text.at(i);
+
         hash = hash * 31 + (int)c;
     }
 
